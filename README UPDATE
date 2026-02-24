@@ -1,0 +1,52 @@
+STOP! This is for the updated Drowzy's Ombre Frosted Template.
+
+README.md GOES TO DROWZY'S OMBRE (EASY FOLLOW) GUIDE
+
+_______
+
+Welcome! This template is designed to be incredibly easy to personalize. You don't need to be a coding expert to make it look completely unique.
+
+Almost everything you need to change is located at the very top of the code in Section 1) CUSTOMIZE VARIABLES HERE.
+
+Here is your cheat sheet for making this theme your own:
+
+🎨 1. Changing the Colors (The Ombre Effect)
+Find the --COLOR-1, --COLOR-2, and --COLOR-3 variables at the top.
+
+These three variables control the animated gradient strip at the top of your panels.
+
+How to pick colors: Colors are written in rgba(red, green, blue, transparency) format. You can easily find RGB color codes by Googling "color picker."
+
+Transparency: The last number (like .70) is how see-through the color is. 1 is perfectly solid, and 0 is invisible.
+
+🥛 2. Adjusting the "Glass" Look
+Want your panels to look more see-through or heavily frosted?
+
+Milkiness: Look at the --CREAM-TOP and --CREAM-BOTTOM variables. Lowering the very last number in those brackets makes the glass more transparent.
+
+Blur: Find the --BLUR variable. Change 10px to a higher number (like 20px) for a super frosted background, or lower it to 0px if you don't want the background to blur at all.
+
+🫧 3. Changing the Corner Roundness
+If you prefer sharp, sleek corners over bubbly ones, look for the --R-LG, --R-MD, and --R-SM variables.
+
+Change these to 0px for perfectly square boxes.
+
+Make the numbers bigger (like 30px) for pillowy, super-rounded edges.
+
+🌟 4. Customizing the Neon Hover Glow
+By default, this theme features a cool red and pink floating shadow that pops up when you hover over a panel. Since this is an interactive effect, you'll need to scroll down just a tiny bit to find it:
+
+Scroll down to Section 3) NEON HOVER GLOW.
+
+Look for the box-shadow: property inside that section.
+
+You will see two main colors: rgba(255, 0, 0, 0.30) (Red) and rgba(255, 0, 120, 0.35) (Pink).
+
+Just swap out the first three numbers of each rgba code to change the hover shadow to blue, green, purple, or whatever fits your vibe! (Note: Keep the last number as a decimal, like .30, so the glow stays soft and airy!)
+
+✍️ 5. Changing the Font and Text Color
+Back in Section 1, you can change how your text looks:
+
+Text Color: Find --INK: #000000;. You can change #000000 (Black) to any hex color code you want.
+
+Font Style: Look for font-family: 'Quicksand', 'Nunito'.... The browser will try to use the first font on the list ('Quicksand'). You can replace these with any Google Font you like! Just type the exact name of the font inside the quotes.
