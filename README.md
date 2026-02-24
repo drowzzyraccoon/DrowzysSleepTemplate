@@ -16,6 +16,9 @@ Here's some things that you need to know.
 The template should be easy to follow and if not, I can see if I can rework it 
 to make sure you are able to read it properly and understand it easily.
 
+When selecting your RGB colors, I suggest https://rgbacolorpicker.com. 
+You're able to copy the RGB code and replaced the RGB colors found within the code.
+
 The template only works well in the 3 light modes being;
 
 1. Kawaii Pink
@@ -87,6 +90,8 @@ Look for the box-shadow: property inside that section.
 You will see two colors: rgba(255, 0, 0, .30) (Red) and rgba(255, 0, 120, 0.35) (Pink).
 
 Just swap out the first three numbers of each rgba code to change the shadow to blue, green, purple, or whatever fits your vibe! (Note: Make sure the last number, the transparency, starts with a decimal, like .30!)
+
+NOTE: The first one is moreso the intensity of that color while the second/bottom part is the COLOR you'd like on it.
 
 ✍️ 6. Changing the Font
 Back at the bottom of Section 1, you will see a font-family: list.
