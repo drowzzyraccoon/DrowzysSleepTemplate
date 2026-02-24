@@ -1,0 +1,374 @@
+/* =========================================================
+   🦝 Ombre Glass Template 🦝
+   ---------------------------------------------------------
+
+/* =========================================================
+   🦝 1) CUSTOMIZE VARIABLES HERE 🦝
+   ---------------------------------------------------------
+   Change THESE to customize the whole theme safely.
+========================================================= */
+.profile-page{
+  /* ---- A) THEME COLORS ---- */
+  --COLOR-1:  rgba(186,182,224,.70);   /* primary provided color */
+  --COLOR-2:  rgba(220,212,223,.55);   /* middle provided color */
+  --COLOR-3:  rgba(255,242,222,.70);   /* accent provided color */
+
+  /* Card backgrounds (how “milky” the glass feels) */
+  --CREAM-TOP:    rgba(255,250,245,.92);
+  --CREAM-BOTTOM: rgba(255,255,255,.60);
+
+  /* Borders (more alpha = more outline) */
+  --BORDER:  rgba(186,182,224,.40);
+  --BORDER2: rgba(255,242,222,.60);
+  
+  /* Text */
+  --INK:   #000000;
+  --MUTED: rgba(0,0,0,.70);
+
+  /* ---- B) ROUNDNESS + SPACING ----
+     Bigger numbers = rounder / puffier */
+  --R-LG: 20px;   /* card corners */
+  --R-MD: 16px;   /* input/button corners */
+  --R-SM: 12px;   /* small elements */
+
+  --CARD-PAD: 12px; /* IMPORTANT for header alignment */
+  --BLUR: 10px;     /* glass blur (0 = no blur) */
+
+  /* ---- C) GLOW CONTROL ----
+     Turn glow OFF by setting --GLOW-ON to 0. */
+  --GLOW-ON: 1;          /* 1 = ON, 0 = OFF */
+  --GLOW-STRENGTH: 28px; /* bigger = glowier */
+  --GLOW-ALPHA: .75;     /* 0.10 subtle, 0.30 strong */
+
+  /* ---- D) SHADOWS (depth) ---- */
+  --SHADOW:  0 14px 34px rgba(186,182,224,.15);
+  --SHADOW2: 0 8px  18px rgba(0,0,0,.10);
+
+  font-family: 'Quicksand', 'Nunito', 'Comic Sans MS', 'Varela Round', ui-rounded, cursive, sans-serif !important;
+  font-weight: bold !important;
+  color: var(--INK) !important;
+  /* background is NOT set here, so your photo stays */
+  padding: 18px 12px;
+}
+
+/* Force ALL text inside panels to be black */
+.profile-page .panel,
+.profile-page .module,
+.profile-page .box,
+.profile-page .card,
+.profile-page [class*="panel"],
+.profile-page [class*="card"],
+.profile-page .panel *,
+.profile-page .module *,
+.profile-page .box *,
+.profile-page .card *,
+.profile-page [class*="panel"] *,
+.profile-page [class*="card"] * {
+  color: #000000 !important;
+}
+
+/* -------------------------
+   Panel hover (lift + glow)
+   - subtle transform and accent glow on hover
+*/
+.panel:hover,
+.module:hover,
+.box:hover,
+.card:hover {
+  /* lift and tiny scale for hover feedback */
+  transform: translateY(-6px) scale(1.008) !important;
+  /* halo + deeper shadow for hover state */
+  box-shadow:
+    0 0 44px rgba(186,182,224,0.48),
+    0 26px 60px rgba(150,146,190,0.36) !important;
+}
+
+/* pseudo-element used to add a soft white halo behind panels on hover */
+.panel::after,
+.module::after,
+.box::after {
+  /* empty content (visual only) */
+  content: "";
+  /* absolute positioning within the panel */
+  position: absolute;
+  /* don't block pointer events */
+  pointer-events: none;
+  /* stretch to fill the host panel */
+  inset: 0;
+  /* copy the panel's corner rounding */
+  border-radius: inherit;
+  /* start hidden */
+  opacity: 0;
+  /* animate opacity and blur */
+  transition: opacity .18s ease, filter .18s ease;
+  /* soft white halo */
+  box-shadow: 0 0 60px 16px rgba(255,255,255,0.06);
+  /* behind normal content */
+  z-index: 0;
+}
+/* show the halo on hover */
+.panel:hover::after,
+.module:hover::after,
+.box:hover::after { 
+  opacity: 1; 
+  filter: blur(6px);
+}
+
+/* ensure direct children sit above the pseudo-element halo */
+.panel > *,
+.module > *,
+.box > * { 
+  position: relative;
+  z-index: 1; 
+}
+
+/* =========================================================
+   🦝 2) DO NOT TOUCH THIS SECTION (Structure) 🦝
+   ---------------------------------------------------------
+   This section makes the layout behave and keeps headers flush.
+========================================================= */
+.profile-page, .profile-page * { box-sizing: border-box; }
+.profile-page { overflow-x: hidden; }
+
+/* =========================================================
+   🦝 3) LINKS 🦝
+   ---------------------------------------------------------
+   If you want different link color, tweak it here.
+========================================================= */
+.profile-page a, .profile-page a:visited{
+  color: rgba(150, 146, 190, .95) !important;
+  text-decoration: none !important;
+}
+.profile-page a:hover{
+  color: rgba(120, 116, 160, .95) !important;
+  text-shadow: 0 0 10px rgba(186,182,224,.65);
+}
+
+/* =========================================================
+   🦝 4) CARDS (Glass Panels) 🦝
+   ---------------------------------------------------------
+   These are the big boxes around everything.
+========================================================= */
+.profile-page :is(
+  section, article, aside,
+  .card, .panel, .box,
+  [class*="card"], [class*="Card"],
+  [class*="panel"], [class*="Panel"],
+  [class*="module"], [class*="Module"],
+  [class*="widget"], [class*="Widget"]
+){
+  background-image: linear-gradient(180deg, var(--CREAM-TOP), var(--CREAM-BOTTOM)) !important;
+  background-size: 200% 200% !important;
+  
+  /* Added breatheGlow alongside moveGradient to handle shadows & gradient moving simultaneously */
+  animation: moveGradient 6s ease infinite, breatheGlow 4s ease-in-out infinite !important;
+  -webkit-animation: moveGradient 6s ease infinite, breatheGlow 4s ease-in-out infinite !important;
+  
+  border: 1px solid var(--BORDER2) !important;
+  border-radius: var(--R-LG) !important;
+  /* glass */
+  backdrop-filter: blur(var(--BLUR));
+  -webkit-backdrop-filter: blur(var(--BLUR));
+
+  /* spacing + header alignment math */
+  padding: var(--CARD-PAD) !important;
+  overflow: hidden;
+}
+/* seam killer */
+.profile-page :is(
+  section, article, aside,
+  .card, .panel, .box,
+  [class*="card"], [class*="Card"],
+  [class*="panel"], [class*="Panel"],
+  [class*="module"], [class*="Module"],
+  [class*="widget"], [class*="Widget"]
+){
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* =========================================================
+   🦝 5) HEADER BARS 🦝
+   ---------------------------------------------------------
+   This configures the top ombre strip of the panels.
+========================================================= */
+.profile-page :is(
+  .card-header, .panel-heading, .panel-header,
+  [class*="header"], [class*="Header"],
+  [class*="titlebar"], [class*="Titlebar"]
+){
+  /* This fixes the “header inset” issue by canceling card padding */
+  margin: calc(var(--CARD-PAD) * -1)
+          calc(var(--CARD-PAD) * -1)
+          var(--CARD-PAD)
+          calc(var(--CARD-PAD) * -1) !important;
+  padding: 10px 14px !important;
+
+  background-image: linear-gradient(90deg,
+    var(--COLOR-1),
+    var(--COLOR-3),
+    rgba(255,250,245,.92)
+  ) !important;
+  background-size: 200% 200% !important;
+  animation: moveGradient 6s ease infinite !important;
+  -webkit-animation: moveGradient 6s ease infinite !important;
+  border-bottom: 1px solid var(--BORDER) !important;
+  color: var(--INK) !important;
+
+  border-radius: var(--R-LG) var(--R-LG) var(--R-MD) var(--R-MD) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+}
+
+.profile-page :is(
+  .card-header *, .panel-heading *, .panel-header *,
+  [class*="header"] *, [class*="Header"] *,
+  [class*="titlebar"] *, [class*="Titlebar"] *
+){
+  color: inherit !important;
+}
+
+/* =========================================================
+   🦝 6) INNER CONTENT BOXES 🦝
+   ---------------------------------------------------------
+   This keeps text areas looking pillowy inside cards.
+========================================================= */
+.profile-page :is(
+  .well, .inner, .content, .body, .panel-body,
+  [class*="body"], [class*="Body"],
+  [class*="content"], [class*="Content"]
+){
+  background: rgba(255,255,255,.70) !important;
+  border: 1px solid rgba(186,182,224,.30) !important;
+  border-radius: var(--R-MD) !important;
+}
+
+/* =========================================================
+   🦝 7) INPUTS AND TEXTAREAS 🦝
+   ========================================================= */
+.profile-page :is(input, textarea, select){
+  font-family: inherit !important;
+  color: var(--INK) !important;
+}
+
+.profile-page textarea{
+  background: rgba(255,250,245,.85) !important;
+  border: 1px solid rgba(186,182,224,.40) !important;
+  border-radius: var(--R-MD) !important;
+  box-shadow: var(--SHADOW2) !important;
+}
+
+.profile-page input, .profile-page select{
+  background: rgba(255,250,245,.80) !important;
+  border: 1px solid rgba(255,242,222,.60) !important;
+  border-radius: var(--R-SM) !important;
+  box-shadow: var(--SHADOW2) !important;
+}
+
+.profile-page input::placeholder,
+.profile-page textarea::placeholder{
+  color: rgba(0,0,0,.42) !important;
+}
+
+.profile-page :is(textarea, input, select):focus{
+  outline: none !important;
+  border-color: rgba(186,182,224,.50) !important;
+  box-shadow: 0 0 0 3px rgba(255,242,222,.60) !important;
+}
+
+/* =========================================================
+   🦝 8) BUTTONS 🦝
+   ========================================================= */
+.profile-page :is(button, input[type="button"], input[type="submit"]){
+  background: linear-gradient(180deg,
+    rgba(186,182,224,.62),
+    rgba(255,250,245,.92)
+  ) !important;
+  color: var(--INK) !important;
+  border: 1px solid rgba(186,182,224,.30) !important;
+  border-radius: var(--R-MD) !important;
+  box-shadow: var(--SHADOW2) !important;
+}
+
+.profile-page :is(button:hover, input[type="button"]:hover, input[type="submit"]:hover){
+  filter: brightness(1.03) saturate(1.06);
+  box-shadow: 0 12px 26px rgba(186,182,224,.25) !important;
+}
+
+/* =========================================================
+   🦝 9) IMAGES + DIVIDERS 🦝
+   ========================================================= */
+.profile-page img{
+  border-radius: 14px;
+  box-shadow: 0 10px 22px rgba(50,48,70,.10);
+}
+
+.profile-page hr{
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(186,182,224,.40),
+    rgba(255,242,222,.60),
+    transparent
+  ) !important;
+  opacity: .95;
+}
+
+/* =========================================================
+   🦝 10) ANIMATED GRADIENTS & GLOW 🦝
+   ========================================================= */
+@keyframes moveGradient {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+@-webkit-keyframes moveGradient {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+@keyframes breatheGlow {
+  0% { 
+    box-shadow: 
+      -8px -8px 25px 5px rgba(186, 182, 224, 0.85), 
+       8px  8px 25px 5px rgba(255, 242, 222, 0.85), 
+       0 14px 34px rgba(186,182,224,.15) !important;
+  }
+  50% { 
+    box-shadow: 
+      -12px -12px 40px 10px rgba(186, 182, 224, 1), 
+       12px  12px 40px 10px rgba(255, 242, 222, 1), 
+       0 14px 34px rgba(186,182,224,.15) !important;
+  }
+  100% { 
+    box-shadow: 
+      -8px -8px 25px 5px rgba(186, 182, 224, 0.85), 
+       8px  8px 25px 5px rgba(255, 242, 222, 0.85), 
+       0 14px 34px rgba(186,182,224,.15) !important;
+  }
+}
+@-webkit-keyframes breatheGlow {
+  0% { 
+    box-shadow: 
+      -8px -8px 25px 5px rgba(186, 182, 224, 0.85), 
+       8px  8px 25px 5px rgba(255, 242, 222, 0.85), 
+       0 14px 34px rgba(186,182,224,.15) !important;
+  }
+  50% { 
+    box-shadow: 
+      -12px -12px 40px 10px rgba(186, 182, 224, 1), 
+       12px  12px 40px 10px rgba(255, 242, 222, 1), 
+       0 14px 34px rgba(186,182,224,.15) !important;
+  }
+  100% { 
+    box-shadow: 
+      -8px -8px 25px 5px rgba(186, 182, 224, 0.85), 
+       8px  8px 25px 5px rgba(255, 242, 222, 0.85), 
+       0 14px 34px rgba(186,182,224,.15) !important;
+  }
+}
